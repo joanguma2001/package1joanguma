@@ -1,11 +1,9 @@
 
 <?php
-include 'DBconn.php';
+include './DBconn.php';
 DBconne::insertInitial();
 
-class DadesDades extends DBconn {
-
-    
+class DadesDades extends DBconne {
 
     function getDades(){
         $host = 'localhost';
@@ -18,21 +16,14 @@ class DadesDades extends DBconn {
         $url = $_SERVER['QUERY_STRING'];
         $urlbona=  str_replace("%22","'",$url);
         if (empty($url)) {
-            //$result = $this->connect()->query('SELECT * FROM ventas');
-            $sql1 = "SELECT * FROM ventas";
-            $result = $conn->query($sql1);
+            $result = $this->connect()->query('SELECT * FROM ventas');
+            
 
         } else {
-            $sql2 = $this->connect()->query('SELECT * FROM ventes where ' . $urlbona);
-            $result = $conn->query($sql2);
-
+            $result = $this->connect()->query('SELECT * FROM ventas where ' . $urlbona);
 
         }
-
-
-        return $result;
-
-        
+        return $result;    
     }
 }
 ?>
