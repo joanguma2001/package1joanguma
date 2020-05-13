@@ -1,5 +1,8 @@
 {
-    "require": {
-        "fzaninotto/faker": "^1.9"
-    }
+    "name": "guma/1",
+    "description": "el meu primer package producte",
+    "type": "project",
+    "license": "lasalle",
+    "minimum-stability": "dev",
+    "require": {}
 }
