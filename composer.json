@@ -2,7 +2,7 @@
     "name": "guma/1",
     "description": "el meu primer package producte",
     "type": "project",
-    "license": "propietary",
+    "license": "proprietary",
     "minimum-stability": "dev",
     "require": {}
 }
