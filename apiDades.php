@@ -1,19 +1,36 @@
 <?php
 
+include 'dadesDades.php';
 
-require_once 'vendor/autoload.php';
+class ApiDades{
 
-$faker = Faker\Factory::create();
+    function getAll(){
+        $dadesDades = new DadesDades();
+        $dadesDade = array();
+        $dadesDade['register'] = array();
+        
+        $result = $dadesDades->getDades();
+        //if($result->rowCount()){
+            while($row = $result->fetch(PDO::FETCH_ASSOC)){
+                $register = array(
+                    'name' => $row['name'],
+                    'date' => $row['date'],
+                    'qty' => $row['qty'],
+                );
+                array_push($dadesDade['register'], $register);
+            }
 
-        for ($i = 0; $i < 1000; $i++) {
-          echo $faker->name;
-          echo "<br>";
-          echo $faker->dateTimeBetween($startDate = '-30 years', $endDate = 'now', $timezone = null);
-          echo "<br>";
+        //    http_response_code(200);
+        //    echo json_encode($dadesDade);
+        //}else{
+        //    http_response_code(404);
+        //    echo json_encode(array('message' => 'Element not found'));
+        //}
+    }  
+}
 
-          echo $faker->biasedNumberBetween($min = 1, $max = 10000, $function = 'sqrt');
-          echo "<br>";
+$api = new ApiDades();
+$api->getAll();
 
-        }
 
-        ?>
+?>
