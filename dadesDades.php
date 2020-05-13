@@ -6,23 +6,41 @@ DBconne::insertInitial();
 class DadesDades extends DBconne {
 
     function getDades(){
-        $host = 'localhost';
-        $dbname = 'dades_guma';
-        $user = 'root';
-        $password = '';
-        $conn;
-        $conn = mysqli_connect($host, $user, $password, $dbname);
 
+
+        //nous valors
+        //valor del parametre global
         $url = $_SERVER['QUERY_STRING'];
-        $urlbona=  str_replace("%22","'",$url);
+        
+        $error = "<br><a style='color:red'>El tipo de parámetro introducido no existe en esta API o no es correcto. Prueba con name o data. </a> <br> 
+        <a style='color:red'>El formato consiste en añadir lo siguiente al final del enlace: </a><br><br>
+        <a style='color:red'>apiDades.php?name=miss </a><br>
+        <a style='color:red'>apiDades.php?date=1995 </a><br><br>";
+
+
+
         if (empty($url)) {
             $result = $this->connect()->query('SELECT * FROM ventas');
-            
-
         } else {
-            $result = $this->connect()->query('SELECT * FROM ventas where ' . $urlbona);
+            if (strpos($url, 'name=') !== false) {
+                $valorQueryName = $_GET["name"];
+                $result = $this->connect()->query('SELECT * FROM ventas where name like "%' . $valorQueryName . '%"');
 
+            } else if (strpos($url, 'date=') !== false){
+                $valorQueryDate = $_GET["date"];
+                $result = $this->connect()->query('SELECT * FROM ventas where date like "%' . $valorQueryDate . '%"');
+
+            } else if (strpos($url, 'qty=') !== false){
+                $valorQueryQty = $_GET["qty"];
+                $result = $this->connect()->query('SELECT * FROM ventas where qty like "%' . $valorQueryQty . '%"');
+            } else {
+                echo $error;
+                $result = $this->connect()->query('SELECT * FROM ventas');
+
+            }
         }
+
+
         return $result;    
     }
 }
