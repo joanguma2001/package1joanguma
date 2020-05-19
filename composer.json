@@ -1,6 +1,7 @@
 {
     "name": "guma/1",
     "description": "el meu primer package producte",
+	"version": "v1.9.1",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "stable",
