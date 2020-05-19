@@ -6,8 +6,6 @@ class ApiDades{
 
     function getAll(){
 
-        
-
         $dadesDades = new DadesDades();
         $dadesDade = array();
         $dadesDade['register'] = array();
